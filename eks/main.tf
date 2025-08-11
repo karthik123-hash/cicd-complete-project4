@@ -86,9 +86,9 @@ resource "aws_security_group" "project4_node_sg" {
   }
 }
 
-resource "aws_eks_cluster" "microdegree" {
-  name     = "microdegree-cluster"
-  role_arn = aws_iam_role.microdegree_cluster_role.arn
+resource "aws_eks_cluster" "project4" {
+  name     = "project4-cluster"
+  role_arn = aws_iam_role.project4_cluster_role.arn
 
   vpc_config {
     subnet_ids         = aws_subnet.project4_subnet[*].id
@@ -96,10 +96,10 @@ resource "aws_eks_cluster" "microdegree" {
   }
 }
 
-resource "aws_eks_node_group" "microdegree" {
-  cluster_name    = aws_eks_cluster.microdegree.name
-  node_group_name = "microdegree-node-group"
-  node_role_arn   = aws_iam_role.microdegree_node_group_role.arn
+resource "aws_eks_node_group" "project4" {
+  cluster_name    = aws_eks_cluster.project4.name
+  node_group_name = "project4-node-group"
+  node_role_arn   = aws_iam_role.project4_node_group_role.arn
   subnet_ids      = aws_subnet.project4_subnet[*].id
 
   scaling_config {
@@ -116,8 +116,8 @@ resource "aws_eks_node_group" "microdegree" {
   }
 }
 
-resource "aws_iam_role" "microdegree_cluster_role" {
-  name = "microdegree-cluster-role"
+resource "aws_iam_role" "project4_cluster_role" {
+  name = "project4-cluster-role"
 
   assume_role_policy = <<EOF
 {
@@ -135,13 +135,13 @@ resource "aws_iam_role" "microdegree_cluster_role" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "microdegree_cluster_role_policy" {
-  role       = aws_iam_role.microdegree_cluster_role.name
+resource "aws_iam_role_policy_attachment" "project4_cluster_role_policy" {
+  role       = aws_iam_role.project4_cluster_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
 }
 
-resource "aws_iam_role" "microdegree_node_group_role" {
-  name = "microdegree-node-group-role"
+resource "aws_iam_role" "project4_node_group_role" {
+  name = "project4-node-group-role"
 
   assume_role_policy = <<EOF
 {
@@ -159,17 +159,17 @@ resource "aws_iam_role" "microdegree_node_group_role" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "microdegree_node_group_role_policy" {
-  role       = aws_iam_role.microdegree_node_group_role.name
+resource "aws_iam_role_policy_attachment" "project4_node_group_role_policy" {
+  role       = aws_iam_role.project4_node_group_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
 }
 
-resource "aws_iam_role_policy_attachment" "microdegree_node_group_cni_policy" {
-  role       = aws_iam_role.microdegree_node_group_role.name
+resource "aws_iam_role_policy_attachment" "project4_node_group_cni_policy" {
+  role       = aws_iam_role.project4_node_group_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
 }
 
-resource "aws_iam_role_policy_attachment" "microdegree_node_group_registry_policy" {
-  role       = aws_iam_role.microdegree_node_group_role.name
+resource "aws_iam_role_policy_attachment" "project4_node_group_registry_policy" {
+  role       = aws_iam_role.project4_node_group_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 }
