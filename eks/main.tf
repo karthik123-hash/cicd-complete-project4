@@ -111,12 +111,12 @@ resource "aws_eks_node_group" "project4" {
   instance_types = ["t2.large"]
 
   remote_access {
-    ec2_ssh_key               = var.ssh_key_name
+    ec2_ssh_key               = var.git_key
     source_security_group_ids = [aws_security_group.project4_node_sg.id]
   }
 }
 
-variable "ssh_key_name" {
+variable "git_key" {
   description = "The name of the EC2 SSH key pair"
   type        = string
 }
