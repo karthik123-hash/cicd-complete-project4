@@ -19,7 +19,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/ManojKRISHNAPPA/complete-cicd-project-microdegree.git'
+                git branch: 'main', url: 'https://github.com/karthik123-hash/cicd-complete-project4.git'
             }
         }
 

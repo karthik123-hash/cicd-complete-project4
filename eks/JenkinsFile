@@ -12,8 +12,8 @@ pipeline {
         stage('checkout') {
             steps {
                 script {
-                    dir("terraform") {
-                        git branch: 'infra', url: 'https://github.com/karthik123-hash/cicd-complete-project4.git'
+                    dir("eks") {
+                        git branch: 'eks', url: 'https://github.com/karthik123-hash/cicd-complete-project4.git'
                     }
                 }
             }
