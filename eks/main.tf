@@ -117,7 +117,7 @@ resource "aws_eks_node_group" "project4" {
 }
 
 resource "aws_iam_role" "project4_cluster_role" {
-  name = "project4-cluster-role"
+  name = "project4-cluster-role-v2"
 
   assume_role_policy = <<EOF
 {
