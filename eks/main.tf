@@ -98,7 +98,7 @@ resource "aws_eks_cluster" "project4" {
 
 resource "aws_eks_node_group" "project4" {
   cluster_name    = aws_eks_cluster.project4.name
-  node_group_name = "project4-node-group"
+  node_group_name = "project4-node-group-v2"
   node_role_arn   = aws_iam_role.project4_node_group_role.arn
   subnet_ids      = aws_subnet.project4_subnet[*].id
 
@@ -141,7 +141,7 @@ resource "aws_iam_role_policy_attachment" "project4_cluster_role_policy" {
 }
 
 resource "aws_iam_role" "project4_node_group_role" {
-  name = "project4-node-group-role"
+  name = "project4-node-group-role-v2"
 
   assume_role_policy = <<EOF
 {
